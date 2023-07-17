@@ -1,0 +1,24 @@
+{
+  "name": "back-end",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "@node-rs/jieba": "^1.7.0",
+    "angular": "^1.8.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "echarts": "^5.4.2",
+    "echarts-wordcloud": "^2.1.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-session": "^1.17.3",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.0.1",
+    "path": "^0.12.7"
+  }
+}
