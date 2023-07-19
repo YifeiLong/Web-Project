@@ -1,0 +1,60 @@
+<html ng-app="index">
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
+    <script src='javascripts/dist/echarts-wordcloud.min.js'></script>
+    <script src="/angular/angular.min.js"></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+    <script src="/javascripts/index.js" type="text/javascript"></script>
+
+    <style>
+        .search-icon{
+            margin-right: 5px;
+            width: 30px;
+            height: 30px;
+            horiz-align: center;
+        }
+
+        .button-text{
+            horiz-align: center;
+            font-weight: bold;
+        }
+
+        .btn-custom{
+            border: none;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .btn-custom:focus{
+            outline: none;
+        }
+
+        .row{
+            margin-right: 1px;
+        }
+    </style>
+</head>
+
+<form class="form-horizontal" role="form">
+    <div class="row" style="margin-bottom: 5px;">
+        <label class="col-lg-2 control-label">内容关键词</label>
+        <div class="col-lg-3">
+            <input type="text" class="form-control" placeholder="多个关键词以空格分开" ng-model="$parent.keyword">
+        </div>
+
+        <div class="col-lg-1">
+            <button type="submit" class="btn btn-custom" ng-click="histogram()">
+                <img src="images/melon2.png" alt="Search Icon" class="search-icon">
+                <span class="button-text">让我康康</span>
+            </button>
+        </div>
+    </div>
+
+</form>
+
+</html>

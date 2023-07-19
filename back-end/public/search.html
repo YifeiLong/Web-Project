@@ -1,0 +1,159 @@
+<meta charset="utf-8">
+<form class="form-horizontal" role="form">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <style>
+            .logo-container{
+                text-align: center;
+                margin-top: 1px; /* 调整与导航栏的距离 */
+                margin-bottom: 20px; /* 调整与搜索框的距离*/
+            }
+
+            .logo{
+                width: 250px; /* logo宽度 */
+                height: auto; /* 高度自动 */
+            }
+
+            .search-row > * {
+                display: inline-block;
+                margin-right: 0;
+            }
+
+            .search-icon{
+                margin-right: 5px;
+                width: 30px;
+                height: 30px;
+                horiz-align: center;
+            }
+
+            .button-text{
+                /*vertical-align: middle;*/
+                horiz-align: center;
+                font-weight: bold;
+            }
+
+            .btn-custom{
+                border: none;
+                background-color: transparent;
+                padding: 0;
+            }
+
+            .btn-custom:focus{
+                outline: none;
+            }
+
+            table.table-striped{
+                /*border:#fafaf4 solid 10px;*/
+                margin: 5px 0;
+                border: none;
+            }
+        </style>
+    </head>
+
+    <div class="logo-container">
+        <img src="images/logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="row search-row" style="margin-bottom: 0; margin-top: 0">
+        <label class="col-lg-1 control-label">标题关键词</label>
+        <div class="col-lg-3">
+            <input type="text" class="form-control" placeholder="多个关键词以空格分开" ng-model="$parent.title">
+        </div>
+
+        <label class="col-lg-1 control-label">新闻来源</label>
+        <div class="col-lg-2">
+            <select class="form-control" autocomplete="off" ng-model="$parent.source">
+                <option selected="selected">所有网站</option>
+                <option>网易娱乐</option>
+                <option>新浪娱乐</option>
+                <option>中新网娱乐</option>
+                <option>凤凰网娱乐</option>
+            </select>
+        </div>
+
+        <label class="col-lg-1 control-label">时间顺序</label>
+        <div class="col-lg-2">
+            <select class="form-control" autocomplete="off" ng-model="$parent.sorted">
+                <option selected="selected">默认</option>
+                <option>倒序</option>
+                <option>顺序</option>
+            </select>
+        </div>
+
+        <div class="row" style="margin-bottom: 5px;">
+            <label class="col-lg-1 control-label"></label>
+            <div class="col-lg-3">
+                <button type="submit" class="btn btn-custom" ng-click="search()">
+                    <img src="images/melon2.png" alt="Search Icon" class="search-icon">
+                    <span class="button-text">开始吃瓜</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<!--显示查询结果-->
+<div ng-show="isshowresult">
+    <style>
+        tr{
+            border: none;
+        }
+        td{
+            border: none;
+            text-align: center;
+        }
+        th{
+            border: none;
+            text-align: center;
+            font-weight: bold;
+        }
+        .green-underline {
+            color: #0563c1;
+            cursor: pointer;
+        }
+    </style>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>新闻序号</td>
+                <td>新闻标题</td>
+                <td>新闻来源</td>
+                <td>发布时间</td>
+<!--                <td>链接</td>-->
+            </tr>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key, item) in items">
+            <td>{{index+key}}</td>
+            <td class="green-underline" ng-click="openLink(item.url)">{{item.title}}</td>
+            <td>{{item.source_name}}</td>
+            <td>{{item.publish_date}}</td>
+<!--            <td>{{item.url}}</td>-->
+<!--            <td><a href="{{item.url}}" target="_blank">{{item.url}}</a></td>-->
+        </tr>
+
+        </tbody>
+    </table>
+
+    <div class="row">
+<!--        </div>-->
+        <div class="pull-right">
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a ng-click="Previous()" role="button"><span role="button">上一页</span></a>
+                    </li>
+                    <li ng-repeat="page in pageList" ng-class="{active:isActivePage(page)}" role="button">
+                        <a ng-click="selectPage(page)" >{{ page }}</a>
+                    </li>
+                    <li>
+                        <a ng-click="Next()" role="button"><span role="button">下一页</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
